@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "id": "keeper",
+  "version": "${version}",
+  "name": "Keeper",
+  "description": "A caretaker for a vanilla server: it says where the lag is coming from, backs the world up on a schedule, and reports what it sees. It changes no game mechanic. Unofficial: not made or endorsed by Mojang or Microsoft.",
+  "authors": ["omeldar"],
+  "contact": {
+    "homepage": "https://github.com/omeldar/goh-keeper",
+    "sources": "https://github.com/omeldar/goh-keeper",
+    "issues": "https://github.com/omeldar/goh-keeper/issues"
+  },
+  "license": "MIT",
+  "environment": "server",
+  "entrypoints": {
+    "server": ["com.omeldar.keeper.KeeperServer"]
+  },
+  "depends": {
+    "fabricloader": ">=0.16.0",
+    "minecraft": "~1.21.11",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}

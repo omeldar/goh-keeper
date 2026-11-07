@@ -72,6 +72,11 @@ writing copies of the world to disk. The state lives in `keeper-backups.json` in
 folder, along with who turned it on and when, and `/keeper backup off` turns it off again. Until
 it is on, `/keeper backup now` refuses too. keeper.json only says *how* backups run.
 
+**Not on Shockbyte.** Shockbyte's acceptable use policy does not allow backups stored in the
+server's own files and says backups must go through its backup service. Keeper can only write
+inside the server's files there, so on a Shockbyte server leave this switched off and use the
+panel's backups. It is meant for self-hosted servers, where `backupDir` can point at another disk.
+
 The sequence is the point:
 
 1. Flush everything to disk on the main thread, and wait.

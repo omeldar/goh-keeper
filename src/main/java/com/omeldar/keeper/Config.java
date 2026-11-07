@@ -47,8 +47,8 @@ public final class Config {
 
     // ----------------------------------------------------------------- backups
 
-    /** Take a backup on a timer. Off until a destination is set and this is turned on. */
-    public boolean backupsEnabled = false;
+    // Whether backups run at all is not set here. It is a switch only /keeper backup on
+    // confirm can flip; see BackupSwitch. A backupsEnabled line left in an old file is ignored.
     /** Where to write them. Relative paths are relative to the server directory. */
     public String backupDir = "backups";
     /** Minutes between automatic backups. */

@@ -71,7 +71,7 @@ public final class Backups {
 
     public void onTick(MinecraftServer server) {
         Config cfg = Config.get();
-        if (!cfg.backupsEnabled || cfg.backupEveryMinutes <= 0) return;
+        if (cfg.backupEveryMinutes <= 0 || !BackupSwitch.on(server)) return;
         if (server.getTicks() % 200 != 0) return;
 
         long dueTicks = cfg.backupEveryMinutes * 60L * 20L;
@@ -95,6 +95,9 @@ public final class Backups {
     /** Null when the backup started, otherwise why it did not. Call on the main thread. */
     public String start(MinecraftServer server, String why) {
         Config cfg = Config.get();
+        if (!BackupSwitch.on(server)) {
+            return "backups are switched off. An owner can turn them on with /keeper backup on";
+        }
         if (!running.compareAndSet(false, true)) return "a backup is already running";
 
         double mspt = KeeperServer.ticks().mspt1m();

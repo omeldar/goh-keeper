@@ -62,8 +62,15 @@ average crosses a threshold, at most once every few minutes.
 
 ## Backups that restore
 
-Off by default. Set `backupsEnabled` and a `backupDir` and it takes a zip on a timer, without
-stopping the server.
+Off, and switched on only by command. `/keeper backup on` says what it would do (how often,
+where, how many it keeps), and `/keeper backup on confirm` switches it on. Both need operator
+level 4, the server owner. From then on it takes a zip on a timer, without stopping the server.
+
+The switch is not in keeper.json on purpose. A config file gets copied between servers, pasted
+from a guide or edited by anyone with file access, and none of that should be enough to start
+writing copies of the world to disk. The state lives in `keeper-backups.json` inside the world
+folder, along with who turned it on and when, and `/keeper backup off` turns it off again. Until
+it is on, `/keeper backup now` refuses too. keeper.json only says *how* backups run.
 
 The sequence is the point:
 
@@ -104,10 +111,15 @@ running is not this mod's call to make.
 
 ```
 /keeper                 status: mspt, tps, players, chunks, backups
-/keeper lag [top]       the entity census, with coordinates
+/keeper lag [n]         the entity census, with coordinates (5 rows, or n)
+/keeper lag top [n]     the same, 10 rows by default
 /keeper afk             who is idle and for how long
 /keeper reload          re-read keeper.json          (admin)
-/keeper backup now      take one immediately         (admin)
+/keeper backup          are backups on, and who switched them on (admin)
+/keeper backup on       what switching them on will do (owner)
+/keeper backup on confirm   switch them on           (owner)
+/keeper backup off      switch them off              (admin)
+/keeper backup now      take one immediately, if on  (admin)
 /keeper backup list     what is in the backup dir    (admin)
 ```
 
@@ -128,7 +140,6 @@ begin with, because a server mod that surprises its admin is worse than no serve
 | `deathCoordinates` | true | |
 | `sleepProgress` | true | |
 | `joinPlaytime` | true | |
-| `backupsEnabled` | **false** | |
 | `backupDir` | `backups` | Relative to the server directory |
 | `backupEveryMinutes` | 180 | |
 | `backupKeep` | 8 | |

@@ -12,7 +12,8 @@ everybody already knows, and the moment a server mod starts improving the *game*
 tell what is vanilla any more. So this one improves the *server*.
 
 **Minecraft 1.21.11 / Fabric, server side.** Clients need nothing - they do not even know it is
-there.
+there. It also runs in single player, inside the game's built-in server, which is the easy way to
+try it before it goes on the real one.
 
 ---
 

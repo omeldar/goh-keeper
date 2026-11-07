@@ -11,9 +11,9 @@
     "issues": "https://github.com/omeldar/goh-keeper/issues"
   },
   "license": "MIT",
-  "environment": "server",
+  "environment": "*",
   "entrypoints": {
-    "server": ["com.omeldar.keeper.KeeperServer"]
+    "main": ["com.omeldar.keeper.KeeperServer"]
   },
   "depends": {
     "fabricloader": ">=0.18.3",

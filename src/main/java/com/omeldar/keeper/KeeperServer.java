@@ -5,7 +5,7 @@ import com.omeldar.keeper.backup.Backups;
 import com.omeldar.keeper.command.KeeperCommand;
 import com.omeldar.keeper.perf.TickWatch;
 import com.omeldar.keeper.quality.Niceties;
-import net.fabricmc.api.DedicatedServerModInitializer;
+import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
@@ -28,7 +28,7 @@ import org.slf4j.LoggerFactory;
  * <p>It is also built to be cheap. The tick hook is a modulo and a return; the expensive
  * reports only run when a command asks for them.
  */
-public final class KeeperServer implements DedicatedServerModInitializer {
+public final class KeeperServer implements ModInitializer {
     public static final String MOD_ID = "keeper";
     public static final Logger LOG = LoggerFactory.getLogger("keeper");
 
@@ -44,7 +44,7 @@ public final class KeeperServer implements DedicatedServerModInitializer {
     }
 
     @Override
-    public void onInitializeServer() {
+    public void onInitialize() {
         Config.load();
         KeeperCommand.register();
 
